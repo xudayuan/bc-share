@@ -10,8 +10,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="agent" target="1.5" />
-      <module name="bc-share" target="1.5" />
+      <module name="agent" target="1.8" />
+      <module name="bc-share" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
