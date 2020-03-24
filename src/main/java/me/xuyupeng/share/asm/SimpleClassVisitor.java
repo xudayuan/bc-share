@@ -14,8 +14,10 @@ import org.objectweb.asm.Opcodes;
  * @date 2020/3/22 14:02
  */
 public class SimpleClassVisitor extends ClassVisitor implements Opcodes {
-    public SimpleClassVisitor() {
-        super(Opcodes.ASM7);
+
+
+    public SimpleClassVisitor(int api, ClassVisitor classVisitor) {
+        super(api, classVisitor);
     }
 
     @Override
@@ -52,13 +54,13 @@ public class SimpleClassVisitor extends ClassVisitor implements Opcodes {
     @Override
     public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
         System.out.println("visitField | " + access + " | " + name + " | " + descriptor + " | " + signature + " | " + value);
-        return null;
+        return cv.visitField(access, name, descriptor, signature, value);
     }
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         System.out.println("visitMethod | " + " | " + access + " | " + name + " | " + descriptor + " | " + signature + "  | " + exceptions);
-        return null;
+        return cv.visitMethod(access, name, descriptor, signature, exceptions);
     }
 
     @Override

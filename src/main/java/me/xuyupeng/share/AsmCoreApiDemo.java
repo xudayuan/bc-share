@@ -7,6 +7,7 @@ import org.objectweb.asm.Opcodes;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
+import jdk.internal.org.objectweb.asm.util.TraceClassVisitor;
 import me.xuyupeng.share.asm.SimpleClassVisitor;
 import me.xuyupeng.share.utils.AsmClassLoader;
 import me.xuyupeng.share.utils.MyClassLoader;
@@ -18,11 +19,13 @@ import me.xuyupeng.share.utils.MyClassLoader;
 public class AsmCoreApiDemo {
     public static void main(String[] args) {
         //打印类的字节码
-        printClassByteCode();
+        // printClassByteCode();
         //生成一个新类
         // generateNewClass();
         //重写类加载器，对类动态修改
         //loanAsmClass();
+        //core api optimize
+        optimize();
 
     }
 
@@ -72,10 +75,11 @@ public class AsmCoreApiDemo {
      */
     private static void generateNewClass() {
         try {
-            SimpleClassVisitor cp = new SimpleClassVisitor();
+            ClassWriter cw = new ClassWriter(0);
+            TraceClassVisitor
+            SimpleClassVisitor cp = new SimpleClassVisitor(Opcodes.ASM7, cw);
             ClassReader cr = new ClassReader("me.xuyupeng.share.DemoClazz");
             cr.accept(cp, 0);
-            ClassWriter cw = new ClassWriter(0);
             //define class header
             cw.visit(Opcodes.V1_5, Opcodes.ACC_PUBLIC, "me/xuyupeng/share/DemoClazzGenerate", null, "me/xuyupeng/share/DemoClazz", null);
             //define a public final static int field with default value 1
@@ -86,6 +90,22 @@ public class AsmCoreApiDemo {
             byte[] b = cw.toByteArray();
             Class c = new MyClassLoader().defineClass("me.xuyupeng.share.DemoClazzGenerate", b);
             System.out.println(c.getName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * core api optimize Copy
+     */
+    private static void optimize() {
+        try {
+            ClassReader cr = new ClassReader("me.xuyupeng.share.DemoClazz");
+            ClassWriter cw = new ClassWriter(cr, 0);
+            SimpleClassVisitor cp = new SimpleClassVisitor(Opcodes.ASM7, cw);
+            cr.accept(cp, 0);
+            //define class header
+            cw.visitEnd();
         } catch (IOException e) {
             e.printStackTrace();
         }
