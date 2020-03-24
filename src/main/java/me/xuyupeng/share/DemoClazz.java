@@ -7,15 +7,15 @@ package me.xuyupeng.share;
  * @date 2020/3/21 16:46
  */
 public class DemoClazz {
-    //静态代码块
-    static {
-        int a = 1;
-        int b = 2;
-        System.out.println(a + b);
-    }
+    public static volatile Integer iv = 5;
+    public static Integer i = 8;
 
-    public int compute(int a, int b) {
-        int c = a + b;
-        return c;
+    public void compute() {
+        int a = 6;
+        int b = 29;
+        iv = iv + a + b;
+        int c = iv + 1;
+        i = i + a + b;
+        System.out.println(i);
     }
 }
