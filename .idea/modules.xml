@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../bc-share/agent/agent.iml" filepath="$PROJECT_DIR$/../bc-share/agent/agent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../bc-share/bc-share.iml" filepath="$PROJECT_DIR$/../bc-share/bc-share.iml" />
+      <module fileurl="file://$PROJECT_DIR$/agent/agent.iml" filepath="$PROJECT_DIR$/agent/agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/agent/agent.iml" filepath="$PROJECT_DIR$/agent/agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bc-share.iml" filepath="$PROJECT_DIR$/bc-share.iml" />
     </modules>
   </component>
 </project>
