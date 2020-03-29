@@ -1,11 +1,11 @@
-package former;
+package transformer;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import java.io.IOException;
 import java.lang.instrument.ClassFileTransformer;
 import java.security.ProtectionDomain;
-import visitor.CostTimeClassAdapter;
+import modifier.CostTimeClassAdapter;
 import static org.objectweb.asm.Opcodes.ASM5;
 
 /**

@@ -1,4 +1,4 @@
-package visitor;
+package modifier;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Type;
@@ -56,8 +56,14 @@ public class CostTimeClassNode extends ClassNode {
                 LabelNode labelLast = new LabelNode();
                 //先添加局部变量 long time
                 int varIndex = m.localVariables.size();
-                m.localVariables.add(new LocalVariableNode("time",Type.LONG_TYPE.getDescriptor(),null, labelFirst,labelLast,varIndex));
                 InsnList instructions = m.instructions;
+                //添加前一部分
+                InsnList i2 = new InsnList();
+                //先添加标签
+                i2.add(labelFirst);
+                i2.add(new MethodInsnNode(INVOKESTATIC, Type.getType(System.class).getInternalName(), "currentTimeMillis", "()J", false));
+                i2.add(new VarInsnNode(LSTORE, varIndex));
+                instructions.insertBefore(instructions.getFirst(),i2);
                 ListIterator itr = instructions.iterator();
                 while(itr.hasNext()){
                     AbstractInsnNode in = (AbstractInsnNode) itr.next();
@@ -83,17 +89,14 @@ public class CostTimeClassNode extends ClassNode {
                         i1.add(new MethodInsnNode(INVOKEVIRTUAL,Type.getType(PrintStream.class).getInternalName(),
                                 "println","(Ljava/lang/String;)V",false));
                         //添加最后一个标签，用于定义局部变量作用范围
-                        i1.add(labelLast);
                         instructions.insertBefore(in,i1);
                     }
                 }
-                //添加前一部分
-                InsnList i2 = new InsnList();
-                //先添加标签
-                i2.add(labelFirst);
-                i2.add(new MethodInsnNode(INVOKESTATIC, Type.getType(System.class).getInternalName(), "currentTimeMillis", "()J", false));
-                i2.add(new VarInsnNode(LSTORE, varIndex));
-                instructions.insertBefore(instructions.getFirst(),i2);
+                LocalVariableNode localVariableNode = (LocalVariableNode) m.localVariables.get(m.localVariables.size() - 1);
+                m.localVariables.add(new LocalVariableNode("time",Type.LONG_TYPE.getDescriptor(),null, labelFirst,
+                        localVariableNode.end,varIndex));
+                m.maxStack += 2;
+                m.maxLocals += 2;
             }
         }
         //上层ClassVisitor最后调用此方法，在这里将事件传给下一层ClassVisitor

@@ -1,4 +1,4 @@
-package former;
+package modifier;
 
 import javassist.CannotCompileException;
 import javassist.ClassPool;
@@ -6,22 +6,18 @@ import javassist.CtBehavior;
 import javassist.CtClass;
 import javassist.NotFoundException;
 
-import org.objectweb.asm.Type;
-
 import java.io.IOException;
-import java.lang.instrument.ClassFileTransformer;
-import java.lang.instrument.IllegalClassFormatException;
-import java.security.ProtectionDomain;
 
 import me.xuyupeng.share.DemoClazz;
 
 /**
+ * 用javassit实现的字节码转换器
+ *
  * @author : xuyupeng
- * @date 2020/3/27 11:34
+ * @date 2020/3/29 17:59
  */
-public class JaClassFileFormer implements ClassFileTransformer {
-    @Override
-    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+public class JaClassModifier {
+    public static byte[] transform(String className, byte[] cbf){
         try {
             ClassPool cp = ClassPool.getDefault();
             CtClass cc = cp.get(DemoClazz.class.getName());
@@ -38,6 +34,6 @@ public class JaClassFileFormer implements ClassFileTransformer {
         } catch (NotFoundException | CannotCompileException | IOException e) {
             e.printStackTrace();
         }
-        return classfileBuffer;
+        return cbf;
     }
 }

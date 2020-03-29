@@ -1,4 +1,4 @@
-package visitor;
+package modifier;
 
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
