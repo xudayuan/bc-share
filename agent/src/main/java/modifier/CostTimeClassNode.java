@@ -51,9 +51,8 @@ public class CostTimeClassNode extends ClassNode {
             List lvs = m.localVariables;
             if("compute".equals(m.name)){
                 //对compute方法进行转化添加耗时
-                //定义两个label，用于限定局部变量的作用范围
+                //定义label，用于限定局部变量的作用范围
                 LabelNode labelFirst  = new LabelNode();
-                LabelNode labelLast = new LabelNode();
                 //先添加局部变量 long time
                 int varIndex = m.localVariables.size();
                 InsnList instructions = m.instructions;
