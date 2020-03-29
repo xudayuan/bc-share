@@ -10,7 +10,7 @@ import org.objectweb.asm.Opcodes;
 /**
  * 简单ClassVisitor示例
  *
- * @author : xuyupeng
+ * @author : xuyupeng.xuyupeng
  * @date 2020/3/22 14:02
  */
 public class SimpleClassVisitor extends ClassVisitor implements Opcodes {

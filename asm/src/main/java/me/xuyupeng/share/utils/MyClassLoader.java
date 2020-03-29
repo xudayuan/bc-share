@@ -3,7 +3,7 @@ package me.xuyupeng.share.utils;
 /**
  * 自定义类加载器
  *
- * @author : xuyupeng
+ * @author : xuyupeng.xuyupeng
  * @date 2020/3/22 18:35
  */
 public class MyClassLoader extends ClassLoader {

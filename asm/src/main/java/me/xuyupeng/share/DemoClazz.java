@@ -3,7 +3,7 @@ package me.xuyupeng.share;
 /**
  * 用于演示字节码的类
  *
- * @author : xuyupeng
+ * @author : xuyupeng.xuyupeng
  * @date 2020/3/21 16:46
  */
 public class DemoClazz {
@@ -28,7 +28,7 @@ public class DemoClazz {
         i = i + a + b;
         System.out.println(i);
         time = System.currentTimeMillis() - time;
-        System.out.println(time);
+        System.out.println("compute cost millis :" + time);
     }
 
     public boolean getStatus() {

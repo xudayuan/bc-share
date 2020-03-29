@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/agent/agent.iml" filepath="$PROJECT_DIR$/agent/agent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/agent/agent.iml" filepath="$PROJECT_DIR$/agent/agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/asm/asm.iml" filepath="$PROJECT_DIR$/asm/asm.iml" />
       <module fileurl="file://$PROJECT_DIR$/bc-share.iml" filepath="$PROJECT_DIR$/bc-share.iml" />
     </modules>
   </component>

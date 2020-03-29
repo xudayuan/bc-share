@@ -9,7 +9,7 @@ import java.io.InputStream;
 /**
  * 字节码读取示例
  *
- * @author : xuyupeng
+ * @author : xuyupeng.xuyupeng
  * @date 2020/3/21 13:32
  */
 public class BcReadDemo {
