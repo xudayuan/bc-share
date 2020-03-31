@@ -9,10 +9,13 @@ package me.xuyupeng.share;
 public class DemoClazz {
     public static volatile Integer iv = 5;
     public static Integer i = 8;
+    static  {
+        System.out.println("loading........");
+    }
 
     public void compute() {
         int a = 6;
-        int b = 29;
+        int b = 356;
         iv = iv + a + b;
         int c = iv + 1;
         i = i + a + b;

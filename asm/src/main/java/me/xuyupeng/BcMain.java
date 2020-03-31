@@ -12,9 +12,6 @@ import me.xuyupeng.share.DemoClazz;
  */
 public class BcMain {
     public static void main(String[] args) {
-        //先获取进程id并打印出来
-        String name = ManagementFactory.getRuntimeMXBean().getName();
-
         System.out.println(ManagementFactory.getRuntimeMXBean().getName());
         DemoClazz dc = new DemoClazz();
         new Thread(() -> {

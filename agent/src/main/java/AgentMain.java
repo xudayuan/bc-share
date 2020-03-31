@@ -21,7 +21,7 @@ public class AgentMain {
         ClassFileTransformer atcft = new AsmTreeClassFileTransformer();
         //使用javassit实现的ClassFileTransformer
         ClassFileTransformer jcft = new JaClassFileFormer();
-        inst.addTransformer(atcft, true);
+        inst.addTransformer(accft, true);
         try {
             inst.retransformClasses(DemoClazz.class);
         } catch (UnmodifiableClassException e) {
